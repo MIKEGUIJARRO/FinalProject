@@ -1,5 +1,7 @@
 const path = require("path");
 const { readFile } = require("./readFile");
+const { writeFile } = require("./writeFile");
+
 
 const appDir = path.dirname(require.main.filename);
 
@@ -20,4 +22,13 @@ const readTestCase = async (fileName) => {
     return data;
 };
 
-module.exports = { readTestCase }
+const writeTestCase = async (fileName, data) => {
+    try {
+        await writeFile(path.join(appDir, "result", fileName), data);
+    } catch (e) {
+        console.log(e);
+    }
+    return;
+}
+
+module.exports = { readTestCase, writeTestCase }

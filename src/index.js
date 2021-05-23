@@ -1,4 +1,4 @@
-const { readTestCase } = require("./util/testCaseHandler");
+const { readTestCase, writeTestCase } = require("./util/testCaseHandler");
 const { buildOrder } = require("./algorithms/algorithm1");
 
 const runHandler = async () => {
@@ -7,12 +7,7 @@ const runHandler = async () => {
     const { projects, dependencies } = await readTestCase(testFile);
     const order = buildOrder(projects, dependencies);
     console.log(order);
+    await writeTestCase("lastResult.txt", JSON.stringify(order));
 }
 
 runHandler();
-
-/* TEST */
-/* var projects = ['a', 'b', 'c', 'd', 'e', 'f'];
-var dependencies = [['a', 'd'], ['f', 'b'], ['b', 'd'], ['f', 'a'], ['d', 'c']];
-
-console.log(buildOrder(projects, dependencies)); */

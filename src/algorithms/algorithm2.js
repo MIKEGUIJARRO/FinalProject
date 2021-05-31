@@ -29,14 +29,14 @@ var buildOrder = function (projects, dependencies) {
 
 var dfs = function (startNode, graph) {
     for (const node in graph) {
-        if (node[startNode] !== undefined) {
+        if (graph[node][startNode] !== undefined) {
             // The startNode is connected to a child node
             dfs(node, graph);
-        } else {
-            // The startNode does not have any child node
-            answer.unshift(startNode);
-            return;
         }
+    }
+    if (!answer.includes(startNode)) {
+        answer.unshift(startNode);
+
     }
 }
 

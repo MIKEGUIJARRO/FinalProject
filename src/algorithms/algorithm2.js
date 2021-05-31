@@ -12,9 +12,6 @@ var buildOrder = function (projects, dependencies) {
         graph.addEdge(dependency[1], dependency[0]);
     });
 
-    graph.printNodes();
-    console.log("--------------------")
-
     // Return the first Node with no children
     var currNode = graph.findNodeWithNoChildren();
     while (currNode !== undefined) {
@@ -23,8 +20,13 @@ var buildOrder = function (projects, dependencies) {
         // Return the first Node with no children
         currNode = graph.findNodeWithNoChildren();
     }
-    console.log("--------")
-    console.log(answer);
+    
+    if (answer.length > 0) {
+        return answer;
+    } else {
+        throw Error;
+    }
+
 }
 
 var dfs = function (startNode, graph) {

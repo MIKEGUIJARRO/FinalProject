@@ -1,15 +1,6 @@
 // Grafo dirigido
 var Graph = require('./../util/Graph');
 
-Graph.prototype.findNodeWithNoChildren = function () {
-    for (var node in this.nodes) {
-        if (Object.keys(this.nodes[node]).length === 0) {
-            return node;
-        }
-    }
-    return undefined;
-};
-
 var buildOrder = function (projects, dependencies) {
     var graph = new Graph();
     projects.forEach(project => {
@@ -18,11 +9,15 @@ var buildOrder = function (projects, dependencies) {
     dependencies.forEach(dependency => {
         graph.addEdge(dependency[1], dependency[0]);
     });
+
+    //graph.printNodes();
+
     var answer = [];
     var currNode = graph.findNodeWithNoChildren();
     while (currNode !== undefined) {
         answer.push(currNode);
         graph.removeNode(currNode);
+        // Return the first Node with no children
         currNode = graph.findNodeWithNoChildren();
     }
     if (answer.length === projects.length) {

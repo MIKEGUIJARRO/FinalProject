@@ -1,0 +1,14 @@
+f b d a c e m l p n r k o
+f b
+b d
+f a
+a d
+d c
+c e
+e m
+m l
+p n
+l r
+r k
+n k
+k o

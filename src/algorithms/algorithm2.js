@@ -2,6 +2,8 @@
 var Graph = require("./../util/Graph");
 
 var answer = [];
+let counterBasicOper = 0;
+
 
 var buildOrder = function (projects, dependencies) {
     var graph = new Graph();
@@ -19,10 +21,12 @@ var buildOrder = function (projects, dependencies) {
         graph.removeNode(currNode, false);
         // Return the first Node with no children
         currNode = graph.findNodeWithNoChildren();
+        counterBasicOper++;
     }
-    
+
     if (answer.length > 0) {
-        return answer;
+        const counterBasicOper = graph.counterBasicOper;
+        return { answer, counterBasicOper };
     } else {
         throw Error;
     }

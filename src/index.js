@@ -8,9 +8,16 @@ const runHandler = async () => {
 
     const { projects, dependencies } = await readTestCase(testFile);
 
-    const order = buildOrder(projects, dependencies);
+    const { answer: order, counterBasicOper } = buildOrder(projects, dependencies);
     console.log(order);
+    console.log("Operaciones basicas: ", counterBasicOper);
     await writeTestCase("lastResult.txt", JSON.stringify(order));
 }
 
+
+const id = "Algoritmo";
+
+// Timer that you can use to keep track of the duration of an operation
+console.time(id);
 runHandler();
+console.timeEnd(id);

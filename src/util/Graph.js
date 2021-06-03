@@ -1,5 +1,6 @@
 var Graph = function () {
   this.nodes = {};
+  this.counterBasicOper = 0;
 };
 
 Graph.prototype.addEdge = function (node, edge) {
@@ -53,15 +54,14 @@ Graph.prototype.removeNode = function (node, deepRemove = true) {
     return 'node does not exist';
   } else {
     delete this.nodes[node];
-
     if (deepRemove) {
       for (var currNode in this.nodes) {
+        this.counterBasicOper++;
         if (this.nodes[currNode][node] !== undefined) {
           delete this.nodes[currNode][node];
         }
       }
     }
-
   }
 };
 
@@ -71,6 +71,7 @@ Graph.prototype.printNodes = function () {
 
 Graph.prototype.findNodeWithNoChildren = function () {
   for (var node in this.nodes) {
+    this.counterBasicOper++;
     if (Object.keys(this.nodes[node]).length === 0) {
       return node;
     }

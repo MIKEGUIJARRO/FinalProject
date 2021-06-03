@@ -21,7 +21,8 @@ var buildOrder = function (projects, dependencies) {
         currNode = graph.findNodeWithNoChildren();
     }
     if (answer.length === projects.length) {
-        return answer;
+        const counterBasicOper = graph.counterBasicOper;
+        return { answer, counterBasicOper };
     } else {
         throw Error;
     }
